@@ -1,0 +1,17 @@
+header {
+
+  padding: 20px 20px 18px 20px;
+  background: url('../../../assets/af_pattern_bg.png') repeat-x;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  h1 {
+    margin: 0;
+    color: white;
+    font-family: 'excellenceBold', Helvetica, sans-serif;
+    font-size: 28px;
+    text-transform: uppercase;
+  }
+
+}

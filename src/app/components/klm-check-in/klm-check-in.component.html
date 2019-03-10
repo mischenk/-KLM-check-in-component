@@ -1,19 +1,52 @@
-<klm-header [title]="'klm-check-in'">
-
-</klm-header>
+<klm-header [title]="'check-in'"></klm-header>
 
 <section class="container">
-  <h2>retrieve your<br/>booking<br>-</h2>
-  <p>booking description</p>
-  <form>
-    booking code<br/>
-    <label>
-      <input type="text">
-    </label>
-    family name<br/>
-    <label>
-      <input type="text">
-    </label>
-    <button>retrieve booking</button>
-  </form>
+  <section class="booking-form">
+
+    <h2>retrieve your<br/>booking<br>-</h2>
+    <p>you can find your booking by filling out your family name and the booking code in your booking code information.</p>
+    <br/>
+    <label>family name</label>
+    <br/>
+    <mat-form-field appearance="outline">
+      <input [formControl]="familyNameControl" matInput placeholder="family name">
+      <mat-error *ngIf="familyNameControl.invalid">
+        <ng-container *ngFor="let error of familyNameFieldErrors">
+          {{error}}<br/>
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <br/>
+    <label>booking code</label>
+    <br/>
+    <mat-form-field appearance="outline">
+      <input [formControl]="bookingCodeControl" matInput placeholder="booking code">
+      <mat-error *ngIf="bookingCodeControl.invalid">
+        <ng-container *ngFor="let error of bookingCodeFieldErrors">
+          {{error}}<br/>
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <br/>
+
+    <button
+      (click)="onFindBookingClick()"
+      [disabled]="form.invalid"
+      mat-flat-button
+      color="warn"
+    >
+      retrieve booking
+    </button>
+
+    <br/>
+
+    <span class="booking-feedback" *ngIf="bookingFeedback !== undefined">
+      {{bookingFeedback}}
+    </span>
+
+
+    <br/>
+
+  </section>
+
 </section>

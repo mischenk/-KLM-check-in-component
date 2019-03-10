@@ -1,5 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~normalize.css';
+@import 'consts.scss';
 
-h1, h2, p {
-  font-family: sans-serif;
+@font-face {
+  font-family: excellenceBold;
+  src: url(assets/ExcellenceInMotionV-Bold.otf);
+}
+@font-face {
+  font-family: excellenceRegular;
+  src: url(assets/ExcellenceInMotionV.otf);
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, p, span {
+  font-family: 'excellenceRegular', Helvetica, sans-serif;
 }

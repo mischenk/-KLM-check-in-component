@@ -1,5 +1,6 @@
 {
-    "klm": {
+    "bookings": [
+      {
         "bookingCode": "PZIGZ3",
         "contactDetails": [
             {
@@ -122,4 +123,5 @@
                 }
         }
     }
+    ]
 }

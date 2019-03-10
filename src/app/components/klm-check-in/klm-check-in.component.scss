@@ -1,0 +1,74 @@
+@import '../../../consts.scss';
+
+:host {
+  display: block;
+}
+
+%form-side-padding {
+  margin: 0 36px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  .booking-form {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid $klm-primary-color;
+    width: 480px;
+    margin-top: 80px;
+
+    @media only screen and (max-width: $breakpoint) {
+      justify-content: stretch;
+      border: none;
+      width: 100%;
+      height: 100%;
+      margin-top: 10px;
+    }
+
+    h2, p, label, span.booking-feedback {
+      color: $klm-primary-color;
+    }
+
+    h2 {
+      font-family: 'excellenceBold', Helvetica, sans-serif;
+      font-size: 48px;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 40px 0 0 0;
+
+      @media only screen and (max-width: $breakpoint) {
+        margin: 20px 0 0 0;
+      }
+    }
+
+    p, label {
+      font-family: 'excellenceRegular', Helvetica, sans-serif;
+      font-size: 24px;
+      @extend %form-side-padding;
+    }
+
+    label, button {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    mat-form-field, button, span.booking-feedback {
+      @extend %form-side-padding;
+    }
+
+    button {
+      color: white;
+      align-self: center;
+
+      @media only screen and (max-width: $breakpoint) {
+        flex: 1 1 auto;
+        align-self: normal;
+      }
+    }
+  }
+}
