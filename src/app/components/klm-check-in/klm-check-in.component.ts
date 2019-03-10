@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {map} from 'rxjs/operators';
 import {Booking, BookingService} from '../../services/booking.service';
-import * as XRegExp from 'xregexp';
+import {ValidationService} from '../../services/validation.service';
 
 @Component({
   selector: 'klm-check-in',
@@ -32,8 +32,11 @@ export class CheckInComponent {
     pattern : 'Booking code should only contain letters and numbers'
   };
 
+  public mapErrorStrings = this.validationService.mapErrorStrings;
+
   constructor(
     public bookingService: BookingService,
+    public validationService: ValidationService,
     private router: Router
   ) {
     this.familyNameControl = new FormControl(
@@ -42,7 +45,7 @@ export class CheckInComponent {
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(30),
-        this.familyNameValidator
+        this.validationService.familyNameValidator
       ]
     );
 
@@ -71,21 +74,6 @@ export class CheckInComponent {
         return this.router.navigate(['/booking']);
       })
     ).subscribe();
-  }
-
-  private familyNameValidator(c: AbstractControl): ValidationErrors | null {
-    const unicodeLetterTest = XRegExp.test(c.value, XRegExp('^\\pL+$'));
-    if (unicodeLetterTest) {
-      return null;
-    } else {
-      return { notletter : 'family name can only consist of characters.' };
-    }
-  }
-
-  private mapErrorStrings(control: AbstractControl) {
-    return (errorStrings: {[index: string]: string}) => {
-      return Object.keys(control.errors).map(key => errorStrings[key]);
-    };
   }
 
 }
