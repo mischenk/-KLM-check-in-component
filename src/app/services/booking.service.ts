@@ -33,13 +33,6 @@ export class BookingService {
 
   constructor(private http: HttpClient) { }
 
-  // the idea here was to be able to query only if a certain booking existed before requesting the data
-  // but I ran out of my timeboxed time to create a node server to actually do this :)
-  public hasBooking(familyName: string, bookingCode: string): Observable<boolean> {
-    return this.http.head('http://localhost:3000/bookings', { observe: 'response', responseType: 'text'})
-      .pipe(map(result => result.status === 200));
-  }
-
   public getBooking(familyName: string, bookingCode: string): Observable<Booking> {
     return this.http.get<Booking[]>('http://localhost:3000/bookings').pipe(
       map((allBookings: Booking[]) => {
